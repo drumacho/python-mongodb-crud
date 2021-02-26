@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} | {{ title }}{% end %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="post" action="{{ reverse_url(action) }}">
+        <div>
+            <label for="name">名前</label>
+            <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+            <label for="gender">性別</label>
+            <select id="gender" name="gender" required>
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+            </select>
+        </div>
+        <div>
+            <label for="birth_year">誕生日</label>
+            <input id="birth_year" name="birth_year" type="text" required>年
+            <input id="birth_month" name="birth_month" type="text" required>月
+            <input id="birth_day" name="birth_day" type="text" required>日
+        </div>
+        <button type="button" onclick="history.back()">戻る</button>
+        <button type="submit">保存</button>
+    </form>
+{% end %}

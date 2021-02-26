@@ -1,15 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hello, world</title>
-    <link rel="stylesheet" href="{{ static_url('css/style.css') }}"/>
-</head>
-<body>
-<div id="container">
-    <div id="main">
-        <p>Hello, world</p>
-        <p>Hello, world</p>
-    </div>
-</div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}{% end %}
+
+{% block content %}
+    <h1>ユーザーリスト</h1>
+    <a href="{{ reverse_url('add') }}">新規追加</a>
+    <table>
+        <thead>
+        <th>名前</th>
+        <th>性別</th>
+        <th>生年月日</th>
+        <th></th>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item['name'] }}</td>
+                <td>{{ item['gender'] }}</td>
+                <td>{{ datetime.datetime.strptime(item['birthday'], '%Y-%m-%d').strftime('%Y年%m月%d日') }}</td>
+                <td>
+                    <a href="{{ reverse_url('edit') }}">編集</a>
+                    <a href="{{ reverse_url('delete') }}">削除</a>
+                </td>
+            </tr>
+        {% end %}
+        </tbody>
+    </table>
+{% end %}
